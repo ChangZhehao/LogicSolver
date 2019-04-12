@@ -49,11 +49,71 @@ public class VocabularyAnalyzer implements AnalyzerImp
             FunctionResult functionResult = new FunctionResult();
             functionResult.setFunctionName(vocabulary.getFunctionName());
             getXAndYCombinations(0,allXCombinations,allYCombinations,new RelationalMap(),functionResult);
+            checkOptionalSettings(functionResult,vocabulary.getOptionSettings());
             functionResultList.add(functionResult);
 
         }
         getAllModels(functionResultList,0,new Model());
     }
+    private void checkOptionalSettings(FunctionResult functionResult,List<String> optionSettings)
+    {
+        for(String setting:optionSettings)
+        {
+            if(setting.equals("all_different"))
+            {
+                checkAllDifferent(functionResult);
+            }
+        }
+    }
+    private void checkAllDifferent(FunctionResult functionResult)
+    {
+        List<Relation> checkList =new ArrayList<>();
+        List<RelationalMap> noDuplicatedRelationalMaps = new ArrayList<>();
+        for(RelationalMap relationalMap:functionResult.getRelationalMaps())
+        {
+            boolean isDuplicate =false;
+            checkList=new ArrayList<>();
+            for(Relation relation: relationalMap.getRelations())
+            {
+                if(isElementDuplicateInCheckList(relation,checkList))
+                {
+                    isDuplicate =true;
+                    break;
+                }
+                checkList.add(relation);
+
+            }
+            if(isDuplicate==false)
+            {
+                noDuplicatedRelationalMaps.add(relationalMap);
+            }
+
+        }
+        functionResult.setRelationalMaps(noDuplicatedRelationalMaps);
+    }
+    private boolean isElementDuplicateInCheckList(Relation element,List<Relation> checkList)
+    {
+
+        for(Relation relation:checkList)
+        {
+            List<String> list1 = element.getDependentVariables();
+            List<String> list2 = relation.getDependentVariables();
+            if(list2.size()!=list1.size())
+            {
+                return true;
+            }
+            for(int i=0;i<list1.size();i++)
+            {
+                if(list1.get(i).equals(list2.get(i)))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     private void getAllModels(List<FunctionResult> functionResultList,int functionResultIndex,Model model)
     {
         if(functionResultIndex>=functionResultList.size())
@@ -83,6 +143,7 @@ public class VocabularyAnalyzer implements AnalyzerImp
             functionResult.getRelationalMaps().add(curRelationalMap);
             return;
         }
+
         for(List<String> yCombination : allYCombinations)
         {
             Relation relation=new Relation(allXCombinations.get(xCombinationIndex),yCombination);

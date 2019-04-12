@@ -21,7 +21,7 @@ public class LogicSolver
         sortAnalyzer.start();
 
         lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("function getplane(size,color):plane.\n" + "function getsize(plane):size.\n" + "function getcolor(plane):color.");
+        lexAnalyzer.lexAnalyze("function getplane(size,color):plane.\n" + "function getsize(plane):size{all_different}.\n" + "function getcolor(plane):color.");
         VocabularyAnalyzer vocabularyAnalyzer = new VocabularyAnalyzer(lexAnalyzer.getLexList(),sortAnalyzer.getSortList());
         vocabularyAnalyzer.start();
 
