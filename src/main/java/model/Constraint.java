@@ -2,6 +2,7 @@ package model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,13 @@ import java.util.List;
 @Data
 public class Constraint
 {
-    private List<LexItem> constraint;
+    private boolean isConstraint = false;
 
-    public Constraint(List<LexItem> constraint)
-    {
-        this.constraint = constraint;
-    }
+    private LexItem connectSymbol = null;
+
+    private List<Constraint> childConstraintList=new ArrayList<>();
+
+    private LexItem leaf;
+
+    private List<LexItem> lexItemList=new ArrayList<>();
 }

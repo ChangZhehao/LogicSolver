@@ -1,5 +1,6 @@
 package analyzer;
 
+import lombok.Data;
 import model.EnumLexItemType;
 import model.LexItem;
 import model.Sort;
@@ -14,6 +15,7 @@ import java.util.List;
  * Time: 20:43
  * Description:
  */
+@Data
 public class SortAnalyzer implements AnalyzerImp
 {
     private List<Sort> sortList = new ArrayList<>();

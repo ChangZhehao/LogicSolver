@@ -1,10 +1,9 @@
 package analyzer;
 
-import model.EnumLexItemType;
-import model.LexItem;
-import model.Vocabulary;
+import model.*;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -18,11 +17,14 @@ public class VocabularyAnalyzer implements AnalyzerImp
 {
     private List<Vocabulary> vocabularyList = new ArrayList<>();
     private List<LexItem> lexItemList = new ArrayList<>();
+    private List<Sort> sortList = new ArrayList<>();
+    private List<Model> modelList =new ArrayList<>();
     int scannerIndex = 0;
 
-    public VocabularyAnalyzer(List<LexItem> lexItemList)
+    public VocabularyAnalyzer(List<LexItem> lexItemList,List<Sort> sortList)
     {
         this.lexItemList = lexItemList;
+        this.sortList = sortList;
     }
 
 
@@ -30,8 +32,97 @@ public class VocabularyAnalyzer implements AnalyzerImp
     public void start()
     {
         getVocabularys();
-
+        getAllModel();
     }
+
+    private void getAllModel()
+    {
+        List<FunctionResult> functionResultList = new ArrayList<>();
+        for(Vocabulary vocabulary: vocabularyList)
+        {
+            List<List<String>> allXCombinations = new ArrayList<>();
+            List<String> independentVariables = vocabulary.getIndependentVariables();
+            List<String> dependentVariables  = vocabulary.getDependentVariables();
+            getAllXOrYCombinations(independentVariables,0,new ArrayList<>(),allXCombinations);
+            List<List<String>> allYCombinations = new ArrayList<>();
+            getAllXOrYCombinations(dependentVariables,0,new ArrayList<>(),allYCombinations);
+            FunctionResult functionResult = new FunctionResult();
+            functionResult.setFunctionName(vocabulary.getFunctionName());
+            getXAndYCombinations(0,allXCombinations,allYCombinations,new RelationalMap(),functionResult);
+            functionResultList.add(functionResult);
+
+        }
+        getAllModels(functionResultList,0,new Model());
+    }
+    private void getAllModels(List<FunctionResult> functionResultList,int functionResultIndex,Model model)
+    {
+        if(functionResultIndex>=functionResultList.size())
+        {
+            Model curModel = new Model();
+            curModel.getAllFunctionResults().addAll(model.getAllFunctionResults());
+            modelList.add(curModel);
+            return;
+        }
+
+
+        for(RelationalMap relationalMap:functionResultList.get(functionResultIndex).getRelationalMaps())
+        {
+            model.getAllFunctionResults().add(relationalMap);
+            getAllModels(functionResultList,functionResultIndex+1,model);
+            model.getAllFunctionResults().remove(relationalMap);
+        }
+    }
+
+
+    private void getXAndYCombinations(int xCombinationIndex, List<List<String>> allXCombinations, List<List<String>> allYCombinations, RelationalMap relationalMap,FunctionResult functionResult)
+    {
+        if(xCombinationIndex>=allXCombinations.size())
+        {
+            RelationalMap curRelationalMap = new RelationalMap();
+            curRelationalMap.getRelations().addAll(relationalMap.getRelations());
+            functionResult.getRelationalMaps().add(curRelationalMap);
+            return;
+        }
+        for(List<String> yCombination : allYCombinations)
+        {
+            Relation relation=new Relation(allXCombinations.get(xCombinationIndex),yCombination);
+            relationalMap.getRelations().add(relation);
+            getXAndYCombinations(xCombinationIndex+1,allXCombinations,allYCombinations,relationalMap,functionResult);
+            relationalMap.getRelations().remove(relation);
+        }
+    }
+
+    private void getAllXOrYCombinations(List<String> varibles,int scanIndex,List<String>combination,List<List<String>> allCombinations)
+    {
+        if(scanIndex>=varibles.size())
+        {
+            List<String> newCombination = new ArrayList<>(combination);
+            allCombinations.add(newCombination);
+            return;
+        }
+
+        Sort sort = getSortFromSortName(varibles.get(scanIndex));
+
+        for(String contain : sort.getContains())
+        {
+            combination.add(contain);
+            getAllXOrYCombinations(varibles,scanIndex+1,combination,allCombinations);
+            combination.remove(contain);
+        }
+    }
+
+    private Sort getSortFromSortName(String sortName)
+    {
+        for(Sort sort : sortList)
+        {
+            if(sortName.equals(sort.getName()))
+            {
+                return sort;
+            }
+        }
+        return null;
+    }
+
 
     private boolean getVocabularys()
     {

@@ -1,3 +1,4 @@
+import analyzer.ConstraintAnalyzer;
 import analyzer.LexAnalyzer;
 import analyzer.SortAnalyzer;
 import analyzer.VocabularyAnalyzer;
@@ -14,15 +15,22 @@ public class LogicSolver
     public static void main(String[] args)
     {
         LexAnalyzer lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("horse enum: bay, black, chestnut, gray. \n" + "rider enum: Mountback, Hacking, Klamberon, Topalov. \n" + "action enum: trot, gallop, stand, jump.");
+        lexAnalyzer.lexAnalyze("plane enum: A,B.\n" + "size enum: small,big.\n" + "color enum: red,blue.");
         lexAnalyzer.printLexResult();
         SortAnalyzer sortAnalyzer = new SortAnalyzer(lexAnalyzer.getLexList());
         sortAnalyzer.start();
 
         lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("function X(x,y): action {all_different, hidden}. \n" + "function steed(rider): horse {all_different}.");
-        VocabularyAnalyzer vocabularyAnalyzer = new VocabularyAnalyzer(lexAnalyzer.getLexList());
+        lexAnalyzer.lexAnalyze("function getplane(size,color):plane.\n" + "function getsize(plane):size.\n" + "function getcolor(plane):color.");
+        VocabularyAnalyzer vocabularyAnalyzer = new VocabularyAnalyzer(lexAnalyzer.getLexList(),sortAnalyzer.getSortList());
         vocabularyAnalyzer.start();
+
+        lexAnalyzer = new LexAnalyzer();
+        lexAnalyzer.lexAnalyze("NOT(((x) = (y)) AND ((y) = (z))). \n"+"(((mine) + (yours)) = (10)).");
+        ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList());
+        constraintAnalyzer.start();
+
+
 
 
     }
