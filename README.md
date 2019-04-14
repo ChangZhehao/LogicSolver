@@ -6,7 +6,6 @@ The current LogicSolver can figure out:
 1.1 'enum' can used, but 'nat' still didn't finish.
 
 2.Vocabulary:
-
 2.1 function can used , it can add with mulitpile inputs and {'all_different'}.
 
 3.Constraint:
