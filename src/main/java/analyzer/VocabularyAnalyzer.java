@@ -1,9 +1,9 @@
 package analyzer;
 
+import lombok.Data;
 import model.*;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -13,6 +13,7 @@ import java.util.List;
  * Time: 20:43
  * Description:
  */
+@Data
 public class VocabularyAnalyzer implements AnalyzerImp
 {
     private List<Vocabulary> vocabularyList = new ArrayList<>();

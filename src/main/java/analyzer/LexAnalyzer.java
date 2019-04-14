@@ -59,6 +59,7 @@ public class LexAnalyzer
                         }
                         else if (isOperator(ch))
                         {
+                            status = EnumLexStatus.STA_DONE;
                             process.append(ch);
                             LexItem lexItem = new LexItem(EnumLexItemType.OPERATOR, process.toString());
                             lexList.add(lexItem);

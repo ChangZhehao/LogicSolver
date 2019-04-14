@@ -1,7 +1,4 @@
-import analyzer.ConstraintAnalyzer;
-import analyzer.LexAnalyzer;
-import analyzer.SortAnalyzer;
-import analyzer.VocabularyAnalyzer;
+import analyzer.*;
 import model.Vocabulary;
 
 /**
@@ -26,11 +23,12 @@ public class LogicSolver
         vocabularyAnalyzer.start();
 
         lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("NOT(((x) = (y)) AND ((y) = (z))). \n"+"(((mine) + (yours)) = (10)).");
+        lexAnalyzer.lexAnalyze("((getsize((A)))=(big)).");
         ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList());
         constraintAnalyzer.start();
 
-
+        ModelAnalyzer modelAnalyzer = new ModelAnalyzer(vocabularyAnalyzer.getModelList(),constraintAnalyzer.getConstraintList());
+        modelAnalyzer.findFitModel();
 
 
     }

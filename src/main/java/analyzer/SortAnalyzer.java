@@ -13,13 +13,22 @@ import java.util.List;
  * User: u6613739
  * Date: 2019/4/6
  * Time: 20:43
- * Description:
+ * Description: the sort part analyzer
  */
 @Data
 public class SortAnalyzer implements AnalyzerImp
 {
+    /**
+     * the result sort list.
+     */
     private List<Sort> sortList = new ArrayList<>();
+    /**
+     * lex item list.
+     */
     private List<LexItem> lexItemList = new ArrayList<>();
+    /**
+     * the scanner's index of lex item list.
+     */
     int scannerIndex = 0;
     public  SortAnalyzer(List<LexItem> lexItemList)
     {
@@ -31,6 +40,10 @@ public class SortAnalyzer implements AnalyzerImp
         getSorts();
     }
 
+    /**
+     * get all sorts from lex item list.
+     * @return is sort success?
+     */
     private boolean getSorts()
     {
         while (scannerIndex < lexItemList.size())
@@ -115,6 +128,7 @@ public class SortAnalyzer implements AnalyzerImp
     @Override
     public boolean checkSyntax()
     {
+        //TODO: checksynatax
         return false;
     }
 }

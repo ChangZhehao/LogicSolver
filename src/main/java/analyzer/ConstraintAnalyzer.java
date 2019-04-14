@@ -1,5 +1,6 @@
 package analyzer;
 
+import lombok.Data;
 import model.Constraint;
 import model.EnumLexItemType;
 import model.LexItem;
@@ -16,6 +17,7 @@ import java.util.Queue;
  * Time: 20:38
  * Description:
  */
+@Data
 public class ConstraintAnalyzer implements AnalyzerImp
 {
     private List<Constraint> constraintList = new ArrayList<>();
