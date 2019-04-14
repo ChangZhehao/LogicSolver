@@ -23,4 +23,6 @@ public class Constraint
     private LexItem leaf;
 
     private List<LexItem> lexItemList=new ArrayList<>();
+
+    private String value="";
 }

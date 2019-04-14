@@ -9,27 +9,45 @@ import model.Vocabulary;
  */
 public class LogicSolver
 {
-    public static void main(String[] args)
+
+    public static void sloveLogicPuzzle(String sortString,String vocabularyString,String ConstraintString)
     {
         LexAnalyzer lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("plane enum: A,B.\n" + "size enum: small,big.\n" + "color enum: red,blue.");
+        lexAnalyzer.lexAnalyze(sortString);
+        System.out.println("Sort Lex Result:");
         lexAnalyzer.printLexResult();
         SortAnalyzer sortAnalyzer = new SortAnalyzer(lexAnalyzer.getLexList());
-        sortAnalyzer.start();
+        if(!sortAnalyzer.start())
+        {
+            System.out.println("sortAnalyers wrong!");
+            return;
+        }
 
         lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("function getplane(size,color):plane.\n" + "function getsize(plane):size{all_different}.\n" + "function getcolor(plane):color.");
+        lexAnalyzer.lexAnalyze(vocabularyString);
+        System.out.println("\r\nVocabulary Lex Result:");
+        lexAnalyzer.printLexResult();
         VocabularyAnalyzer vocabularyAnalyzer = new VocabularyAnalyzer(lexAnalyzer.getLexList(),sortAnalyzer.getSortList());
-        vocabularyAnalyzer.start();
+        if(!vocabularyAnalyzer.start())
+        {
+            System.out.println("vocabularyAnalyzer wrong!");
+            return;
+        }
 
         lexAnalyzer = new LexAnalyzer();
-        lexAnalyzer.lexAnalyze("((getsize((A)))=(big)).");
+        lexAnalyzer.lexAnalyze(ConstraintString);
+        System.out.println("\r\nConstraint Lex Result:");
+        lexAnalyzer.printLexResult();
         ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList());
-        constraintAnalyzer.start();
+
+        if(!constraintAnalyzer.start())
+        {
+            System.out.println("constraintAnalyzer wrong!");
+            return;
+        }
 
         ModelAnalyzer modelAnalyzer = new ModelAnalyzer(vocabularyAnalyzer.getModelList(),constraintAnalyzer.getConstraintList());
         modelAnalyzer.findFitModel();
-
 
     }
 }

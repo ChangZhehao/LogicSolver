@@ -18,4 +18,5 @@ public class Model
 {
     List<RelationalMap> allFunctionResults = new ArrayList<>();
     boolean isValid = false;
+
 }

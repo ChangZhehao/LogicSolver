@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface AnalyzerImp
 {
-     public void start();
+     public boolean start();
      public boolean checkSyntax();
 
 }

@@ -30,13 +30,20 @@ public class VocabularyAnalyzer implements AnalyzerImp
 
 
     @Override
-    public void start()
+    public boolean start()
     {
-        getVocabularys();
-        getAllModel();
+        if(!getVocabularys())
+        {
+            return false;
+        }
+        if(!getAllModel())
+        {
+            return false;
+        }
+        return true;
     }
 
-    private void getAllModel()
+    private boolean getAllModel()
     {
         List<FunctionResult> functionResultList = new ArrayList<>();
         for(Vocabulary vocabulary: vocabularyList)
@@ -55,6 +62,7 @@ public class VocabularyAnalyzer implements AnalyzerImp
 
         }
         getAllModels(functionResultList,0,new Model());
+        return true;
     }
     private void checkOptionalSettings(FunctionResult functionResult,List<String> optionSettings)
     {
@@ -140,8 +148,10 @@ public class VocabularyAnalyzer implements AnalyzerImp
         if(xCombinationIndex>=allXCombinations.size())
         {
             RelationalMap curRelationalMap = new RelationalMap();
+            curRelationalMap.setFunctionName(functionResult.getFunctionName());
             curRelationalMap.getRelations().addAll(relationalMap.getRelations());
             functionResult.getRelationalMaps().add(curRelationalMap);
+
             return;
         }
 

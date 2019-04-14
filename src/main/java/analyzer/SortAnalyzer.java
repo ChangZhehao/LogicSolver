@@ -35,9 +35,13 @@ public class SortAnalyzer implements AnalyzerImp
         this.lexItemList = lexItemList;
     }
     @Override
-    public void start()
+    public boolean start()
     {
-        getSorts();
+        if(!getSorts())
+        {
+            return false;
+        }
+        return true;
     }
 
     /**

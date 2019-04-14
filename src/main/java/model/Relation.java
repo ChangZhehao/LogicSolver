@@ -22,4 +22,5 @@ public class Relation
         this.independentVariables = independentVariables;
         this.dependentVariables=dependentVariables;
     }
+
 }

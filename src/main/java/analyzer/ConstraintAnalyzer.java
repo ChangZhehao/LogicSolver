@@ -28,13 +28,18 @@ public class ConstraintAnalyzer implements AnalyzerImp
         this.lexItemList = lexItemList;
     }
     @Override
-    public void start()
+    public boolean start()
     {
         getConstraints(lexItemList);
         for(int i=0;i<constraintList.size();i++)
         {
-            analyzeConstraint(constraintList.get(i));
+            boolean isSuccess = analyzeConstraint(constraintList.get(i));
+            if(!isSuccess)
+            {
+                return false;
+            }
         }
+        return true;
     }
 
     private boolean analyzeConstraint(Constraint parentConstraint)
@@ -45,6 +50,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
          * (......) the element of subList is 1
          * (......)OPERATOR(......) the element of subList is 3
          * NOT(.....) the element of subList is 2
+         * (...)SEPERAROTR(....) the element of subList is 3.
          *
          */
         Queue<Constraint> constraintQueue = new LinkedList<>();

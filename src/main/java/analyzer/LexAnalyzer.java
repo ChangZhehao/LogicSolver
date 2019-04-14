@@ -18,7 +18,7 @@ import java.util.List;
 public class LexAnalyzer
 {
     private String[] keyWords = {"enum", "function","all_different","hidden","AND","OR","XOR","NOT"};
-    private char[] operators = {'=', '+', '-', '!', '&', '|', '~'};
+    private char[] operators = {'=', '+', '-', '!', '&', '|'};
     private char[] seperators = {':', ',', '.', '(', ')', '{', '}'};
 
     private List<LexItem> lexList = new ArrayList<>();
@@ -35,7 +35,6 @@ public class LexAnalyzer
             while (status != EnumLexStatus.STA_DONE)
             {
 
-                System.out.println(status);
                 char ch = text.charAt(scannerIndex);
                 switch (status)
                 {

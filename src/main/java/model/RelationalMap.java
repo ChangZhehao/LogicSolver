@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * User: u6613739
  * Date: 2019/4/12
@@ -15,8 +16,7 @@ import java.util.List;
 public class RelationalMap
 {
 
-
+    private String functionName = "";
     private List<Relation> relations = new ArrayList<>();
-
 
 }
