@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5330302f-915d-4014-83a6-fa005aaf665c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,7 +60,7 @@
           <entry key="dummy" value="10" />
           <entry key="java" value="19788" />
           <entry key="md" value="809" />
-          <entry key="txt" value="253" />
+          <entry key="txt" value="266" />
           <entry key="xml" value="14" />
         </counts>
       </usages-collector>
@@ -69,7 +68,7 @@
         <counts>
           <entry key="JAVA" value="19788" />
           <entry key="Markdown" value="809" />
-          <entry key="PLAIN_TEXT" value="263" />
+          <entry key="PLAIN_TEXT" value="276" />
           <entry key="XML" value="14" />
         </counts>
       </usages-collector>
@@ -131,8 +130,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="150">
-                <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <first_editor relative-caret-position="330">
+                <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
               </first_editor>
               <second_editor />
             </state>
@@ -320,6 +319,13 @@
               <item name="LogicSolver" type="b2602c69:ProjectViewProjectNode" />
               <item name="LogicSolver" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LogicSolver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LogicSolver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -333,7 +339,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555302943148" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555307138429" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -401,7 +407,7 @@
       <workItem from="1555049072759" duration="14597000" />
       <workItem from="1555147340725" duration="656000" />
       <workItem from="1555216577225" duration="16150000" />
-      <workItem from="1555296970690" duration="6058000" />
+      <workItem from="1555296970690" duration="7303000" />
     </task>
     <task id="LOCAL-00001" summary="finish analyzer for Sort, Vocabulary">
       <created>1554554686964</created>
@@ -452,11 +458,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555302931709</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update readme">
+      <created>1555303089570</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1555303089570</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72969000" />
+    <option name="totallyTimeSpent" value="74214000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -526,7 +539,8 @@
     <MESSAGE value="Finish logic4fun step1" />
     <MESSAGE value="update readme 2019.04.14" />
     <MESSAGE value="supprot function nat{}" />
-    <option name="LAST_COMMIT_MESSAGE" value="supprot function nat{}" />
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -849,8 +863,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="150">
-            <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <first_editor relative-caret-position="330">
+            <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
           </first_editor>
           <second_editor />
         </state>
