@@ -46,7 +46,7 @@ public class ModelAnalyzer
         {
             i++;
             System.out.println("Model "+i);
-            System.out.println(model);
+            System.out.println(model.printResult());
         }
     }
 
@@ -149,7 +149,6 @@ public class ModelAnalyzer
 
     private String findValueFromOperator(Constraint constraint)
     {
-        //TODO: add NOT() AND ,OR XOR, operator
         String value = "null";
         String childValue1,childValue2;
         switch (constraint.getConnectSymbol().getData())
@@ -252,6 +251,30 @@ public class ModelAnalyzer
                 {
                     value="true";
                 }
+            case "IF":
+                childValue1 = constraint.getChildConstraintList().get(0).getValue();
+                childValue2 = constraint.getChildConstraintList().get(1).getValue();
+                if(childValue1.equals("false") && childValue2.equals("true"))
+                {
+                    value = "false";
+                }
+                else
+                {
+                    value="true";
+                }
+                break;
+            case "IFF":
+                childValue1 = constraint.getChildConstraintList().get(0).getValue();
+                childValue2 = constraint.getChildConstraintList().get(1).getValue();
+                if(childValue1.equals(childValue2))
+                {
+                    value = "true";
+                }
+                else
+                {
+                    value="false";
+                }
+                break;
 
         }
         return value;

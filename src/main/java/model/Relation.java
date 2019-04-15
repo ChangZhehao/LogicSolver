@@ -23,4 +23,21 @@ public class Relation
         this.dependentVariables=dependentVariables;
     }
 
+    public String printResult()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(String string : independentVariables)
+        {
+            sb.append(string+",");
+        }
+        sb.append("]                [");
+
+        for(String string: dependentVariables)
+        {
+            sb.append(string+",");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

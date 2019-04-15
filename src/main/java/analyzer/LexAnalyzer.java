@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 public class LexAnalyzer
 {
-    private String[] keyWords = {"enum", "function","all_different","hidden","AND","OR","XOR","NOT"};
+    private String[] keyWords = {"enum", "function","all_different","hidden","AND","OR","XOR","NOT","IF","IFF","nat"};
     private char[] operators = {'=', '+', '-', '!', '&', '|'};
     private char[] seperators = {':', ',', '.', '(', ')', '{', '}'};
 
