@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5330302f-915d-4014-83a6-fa005aaf665c" name="Default Changelist" comment="update readme 2019.04.14">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/EnumVariableType.java" afterDir="false" />
+    <list default="true" id="5330302f-915d-4014-83a6-fa005aaf665c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Relation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/RelationalMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RelationalMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Vocabulary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Vocabulary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,7 +43,7 @@
         <counts>
           <entry key="class" value="3" />
           <entry key="java" value="76" />
-          <entry key="md" value="1" />
+          <entry key="md" value="2" />
           <entry key="pom" value="1" />
           <entry key="xml" value="2" />
         </counts>
@@ -61,24 +52,24 @@
         <counts>
           <entry key="CLASS" value="3" />
           <entry key="JAVA" value="76" />
-          <entry key="Markdown" value="1" />
+          <entry key="Markdown" value="2" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="10" />
-          <entry key="java" value="19786" />
-          <entry key="md" value="689" />
-          <entry key="txt" value="212" />
+          <entry key="java" value="19788" />
+          <entry key="md" value="809" />
+          <entry key="txt" value="253" />
           <entry key="xml" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="19786" />
-          <entry key="Markdown" value="689" />
-          <entry key="PLAIN_TEXT" value="222" />
+          <entry key="JAVA" value="19788" />
+          <entry key="Markdown" value="809" />
+          <entry key="PLAIN_TEXT" value="263" />
           <entry key="XML" value="14" />
         </counts>
       </usages-collector>
@@ -86,18 +77,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/LogicSolver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/SortAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,7 +113,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="299">
@@ -144,6 +123,18 @@
                 <element signature="e#14062#14063#0" expanded="true" />
                 <element signature="e#14090#14091#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="150">
+                <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -169,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/MyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+            <state relative-caret-position="507">
+              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -254,17 +245,17 @@
         <option value="$PROJECT_DIR$/src/main/java/LogicSolver.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Constraint.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/model/Model.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/RelationalMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Relation.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/SortAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MyTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/EnumVariableType.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Vocabulary.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MyTest.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -342,7 +333,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555302854407" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555302943148" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -410,7 +401,7 @@
       <workItem from="1555049072759" duration="14597000" />
       <workItem from="1555147340725" duration="656000" />
       <workItem from="1555216577225" duration="16150000" />
-      <workItem from="1555296970690" duration="5736000" />
+      <workItem from="1555296970690" duration="6058000" />
     </task>
     <task id="LOCAL-00001" summary="finish analyzer for Sort, Vocabulary">
       <created>1554554686964</created>
@@ -454,11 +445,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555242643077</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="supprot function nat{}">
+      <created>1555302931709</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555302931709</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72647000" />
+    <option name="totallyTimeSpent" value="72969000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,7 +469,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -483,7 +480,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298647" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.35796046" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.38709676" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38709676" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298647" />
@@ -492,7 +489,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32882413" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.3298647" />
+      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.3298647" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -528,7 +525,8 @@
     <MESSAGE value="structure of ModelAnalyzer" />
     <MESSAGE value="Finish logic4fun step1" />
     <MESSAGE value="update readme 2019.04.14" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme 2019.04.14" />
+    <MESSAGE value="supprot function nat{}" />
+    <option name="LAST_COMMIT_MESSAGE" value="supprot function nat{}" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -719,16 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="360">
-            <caret line="12" selection-start-line="12" selection-end-line="12" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Constraint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="611">
@@ -825,24 +813,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/EnumVariableType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Vocabulary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -855,6 +829,30 @@
             <element signature="e#14062#14063#0" expanded="true" />
             <element signature="e#14090#14091#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Vocabulary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="150">
+            <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
