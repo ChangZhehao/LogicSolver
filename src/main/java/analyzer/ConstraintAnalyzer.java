@@ -1,15 +1,10 @@
 package analyzer;
 
+import jdk.nashorn.internal.ir.LexicalContext;
 import lombok.Data;
-import model.Constraint;
-import model.EnumLexItemType;
-import model.LexItem;
-import model.Sort;
+import model.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * User: u6613739
@@ -45,61 +40,19 @@ public class ConstraintAnalyzer implements AnalyzerImp
     private boolean analyzeConstraint(Constraint parentConstraint)
     {
 
-        /**
-         * the type of constraint may be consider as following type:
-         * (......) the element of subList is 1
-         * (......)OPERATOR(......) the element of subList is 3
-         * NOT(.....) the element of subList is 2
-         * (...)SEPERAROTR(....) the element of subList is 3.
-         *
-         */
-        Queue<Constraint> constraintQueue = new LinkedList<>();
-        constraintQueue.offer(parentConstraint);
-
-        while (constraintQueue.size() != 0)
+        GrammarNode grammarNode = new GrammarNode();
+        Stack<String> statusStack = new Stack<>();
+        List<LexItem> inputs = parentConstraint.getLexItemList();
+        statusStack.push("$");
+        statusStack.push("X");
+        String status =statusStack.peek();
+        LexItem input = inputs.get(0);
+        while(status!="$")
         {
-            Constraint currentConstraint = constraintQueue.poll();
-            List<List<LexItem>> subList = getSubLists(currentConstraint.getLexItemList());
-            switch (subList.size())
-            {
-                case 1:
-                    if(subList.get(0).size()==1)
-                    {
-                        //only one elements
-                        currentConstraint.setLeaf(subList.get(0).get(0));
-                    }
-                    else {
-                        Constraint newConstraint = new Constraint();
-                        newConstraint.setLexItemList(removeBrackets(subList.get(0)));
-                        currentConstraint.getChildConstraintList().add(newConstraint);
-                        constraintQueue.offer(newConstraint);
-                    }
-                    break;
-                case 2:
-                        Constraint newConstraint = new Constraint();
-                        newConstraint.setLexItemList(removeBrackets(subList.get(1)));
-                        currentConstraint.getChildConstraintList().add(newConstraint);
-                        currentConstraint.setConnectSymbol(subList.get(0).get(0));
-                        constraintQueue.offer(newConstraint);
-                    break;
-                case 3:
-                    Constraint leftConstraint = new Constraint();
-
-                    leftConstraint.setLexItemList(removeBrackets(subList.get(0)));
-                    currentConstraint.getChildConstraintList().add(leftConstraint);
-                    Constraint rightConstraint = new Constraint();
-                    rightConstraint.setLexItemList(removeBrackets(subList.get(2)));
-                    currentConstraint.getChildConstraintList().add(rightConstraint);
-
-                    currentConstraint.setConnectSymbol(subList.get(1).get(0));
-                    constraintQueue.offer(leftConstraint);
-                    constraintQueue.offer(rightConstraint);
-                    break;
-                default:return false;
-            }
-
+            if(status.equals(input.getData()) && input.getType()==EnumLexItemType.SEPARATOR)
         }
-        return true;
+
+
 
 
     }
