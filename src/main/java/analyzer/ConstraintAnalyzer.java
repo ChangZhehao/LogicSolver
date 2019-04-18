@@ -43,14 +43,8 @@ public class ConstraintAnalyzer implements AnalyzerImp
     private boolean analyzeConstraint(Constraint constraint)
     {
         updateLexItemType(constraint);
-        priorityOne(constraint);
-        priorityTwo(constraint);
-        priorityThree(constraint);
-        priorityFour(constraint);
-        priorityFive(constraint);
-        prioritySix(constraint);
-        prioritySeven(constraint);
 
+        parseSimpleExpr(constraint);
 
 
         if(constraint.getDstNodes().size()==3) {
@@ -61,7 +55,18 @@ public class ConstraintAnalyzer implements AnalyzerImp
             return false;
         }
     }
+    private boolean parseSimpleExpr(Constraint constraint,int startIndex,int endIndex)
+    {
+        priorityOne(constraint);
+        priorityTwo(constraint);
+        priorityThree(constraint);
+        priorityFour(constraint);
+        priorityFive(constraint);
+        prioritySix(constraint);
+        prioritySeven(constraint);
 
+        return true;
+    }
 
 
     /**
@@ -73,13 +78,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean priorityOne(Constraint constraint)
+    private boolean priorityOne(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i-2);
@@ -126,13 +131,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean priorityTwo(Constraint constraint)
+    private boolean priorityTwo(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -179,13 +184,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean priorityThree(Constraint constraint)
+    private boolean priorityThree(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -234,13 +239,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean priorityFour(Constraint constraint)
+    private boolean priorityFour(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -288,13 +293,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean priorityFive(Constraint constraint)
+    private boolean priorityFive(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -341,13 +346,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean prioritySix(Constraint constraint)
+    private boolean prioritySix(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -395,13 +400,13 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean prioritySeven(Constraint constraint)
+    private boolean prioritySeven(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
         {
             ischanged = false;
-            for(int i=2;i<constraint.getDstNodes().size();i++)
+            for(int i=startIndex+2;i<endIndex;i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -446,7 +451,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
      * @param constraint
      * @return
      */
-    private boolean ProcessOfFunctionAndBrackets(Constraint constraint)
+    private boolean ProcessOfFunctionAndBrackets(Constraint constraint,int startIndex, int endIndex)
     {
         boolean ischanged = true;
         while(ischanged)
@@ -514,7 +519,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         return true;
     }
 
-    private boolean isFunction(Constraint constraint,int innerLeftBracketIndex)
+    private boolean isFunction(Constraint constraint,int innerLeftBracketIndex,int startIndex, int endIndex)
     {
         if(innerLeftBracketIndex==0)
         {
