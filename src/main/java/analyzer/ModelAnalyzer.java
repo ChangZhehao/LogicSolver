@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Data
 public class ModelAnalyzer
 {
+    /*
     List<Model> allModelList = new ArrayList<>();
     List<Model> allFitModelList = new ArrayList<>();
     List<Constraint> constraintList = new ArrayList<>();
@@ -322,5 +323,6 @@ public class ModelAnalyzer
 
         return value;
     }
+    */
 
 }

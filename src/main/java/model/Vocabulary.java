@@ -1,6 +1,5 @@
 package model;
 
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import lombok.Data;
 
 import java.util.ArrayList;

@@ -38,7 +38,7 @@ public class LogicSolver
         lexAnalyzer.lexAnalyze(ConstraintString);
         System.out.println("\r\nConstraint Lex Result:");
         lexAnalyzer.printLexResult();
-        ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList());
+        ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList(),vocabularyAnalyzer.getVocabularyList(),sortAnalyzer.getSortList());
 
         if(!constraintAnalyzer.start())
         {
@@ -46,8 +46,8 @@ public class LogicSolver
             return;
         }
 
-        ModelAnalyzer modelAnalyzer = new ModelAnalyzer(vocabularyAnalyzer.getModelList(),constraintAnalyzer.getConstraintList());
-        modelAnalyzer.findFitModel();
+        //ModelAnalyzer modelAnalyzer = new ModelAnalyzer(vocabularyAnalyzer.getModelList(),constraintAnalyzer.getConstraintList());
+        //modelAnalyzer.findFitModel();
 
     }
 }

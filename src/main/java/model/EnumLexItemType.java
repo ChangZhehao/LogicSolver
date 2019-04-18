@@ -14,5 +14,12 @@ public enum EnumLexItemType
     OPERATOR,
     SEPARATOR,
     ERROR,
-    UNKNOWN
+    UNKNOWN,
+    START,
+    END,
+    FUNCTION_NAME,
+    CONSTANT,
+    VARIALBE,
+    DSTNODE_EXPRESSION,
+    DSTNODE_JUDGEMENT
 }

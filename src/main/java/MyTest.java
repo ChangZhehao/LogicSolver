@@ -11,7 +11,9 @@ public class MyTest
     public static void main(String[] args)
     {
         //normalTest();
-        natTest();
+        //natTest();
+        newConstraintTest();
+
     }
     public static void normalTest()
     {
@@ -25,6 +27,13 @@ public class MyTest
         String sortString="plane enum: A,B.";
         String vocabularyString="function indexof(plane): nat.";
         String constraintString="";
+        LogicSolver.sloveLogicPuzzle(sortString,vocabularyString,constraintString);
+    }
+    public static void newConstraintTest()
+    {
+        String sortString="plane enum: A,B.\n" + "size enum: small,big.\n" + "color enum: red,blue.";
+        String vocabularyString="function getplane(size,color):plane.\n" + "function getsize(plane):size{all_different}.\n" + "function getcolor(plane):color.";
+        String constraintString="3+4*(1-3)/2=(4) AND getplane(small,red)=A.";
         LogicSolver.sloveLogicPuzzle(sortString,vocabularyString,constraintString);
     }
 }
