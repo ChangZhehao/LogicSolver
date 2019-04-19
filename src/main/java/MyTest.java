@@ -12,7 +12,8 @@ public class MyTest
     {
         //normalTest();
         //natTest();
-        newConstraintTest();
+        //newConstraintTest();
+        innerFunctionTest();
 
     }
     public static void normalTest()
@@ -34,6 +35,14 @@ public class MyTest
         String sortString="plane enum: A,B.\n" + "size enum: small,big.\n" + "color enum: red,blue.";
         String vocabularyString="function getplane(size,color):plane.\n" + "function getsize(plane):size{all_different}.\n" + "function getcolor(plane):color.";
         String constraintString=" 3+4*(1-3)/(((4)))=111.";
+        LogicSolver.sloveLogicPuzzle(sortString,vocabularyString,constraintString);
+    }
+
+    public static void innerFunctionTest()
+    {
+        String sortString="plane enum: A,B.\n" + "size enum: small,big.\n" + "color enum: red,blue.";
+        String vocabularyString="function getplane(size,color):plane.\n" + "function getsize(plane):size{all_different}.\n" + "function getcolor(plane):color.";
+        String constraintString="getplane(getsize(A),getcolor(A))=A.";
         LogicSolver.sloveLogicPuzzle(sortString,vocabularyString,constraintString);
     }
 }

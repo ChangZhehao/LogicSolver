@@ -11,6 +11,7 @@ public class DSTNode {
     private LexItem value = null;
     private LexItem move = null;
     private UUID uuid = null;
+    private String result = null;
 
     public DSTNode(LexItem value){
         this.value = value;
