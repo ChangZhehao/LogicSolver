@@ -362,6 +362,7 @@
       <module name="LogicSolver" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -372,6 +373,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest" />
         <item itemvalue="JUnit.MyTest" />
       </list>
     </recent_temporary>
