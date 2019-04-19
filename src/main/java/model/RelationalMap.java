@@ -18,5 +18,14 @@ public class RelationalMap
 
     private String functionName = "";
     private List<Relation> relations = new ArrayList<>();
+    public String printResult()
+    {
+        StringBuilder sb =new StringBuilder();
+        for(Relation relation: relations)
+        {
+            sb.append(relation.printResult()+"\r\n");
+        }
 
+        return sb.toString();
+    }
 }

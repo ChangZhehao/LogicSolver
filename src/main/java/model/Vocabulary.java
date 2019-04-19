@@ -1,6 +1,5 @@
 package model;
 
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -17,7 +16,9 @@ public class Vocabulary
 {
 
     private String functionName;
+    private List<EnumVariableType> independentVariablesTypes = new ArrayList<>();
     private List<String> independentVariables = new ArrayList<>();
+    private List<EnumVariableType> dependentVariablesTypes = new ArrayList<>();
     private List<String> dependentVariables = new ArrayList<>();
     private List<String> optionSettings = new ArrayList<>();
 }

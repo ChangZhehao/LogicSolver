@@ -51,9 +51,9 @@ public class VocabularyAnalyzer implements AnalyzerImp
             List<List<String>> allXCombinations = new ArrayList<>();
             List<String> independentVariables = vocabulary.getIndependentVariables();
             List<String> dependentVariables  = vocabulary.getDependentVariables();
-            getAllXOrYCombinations(independentVariables,0,new ArrayList<>(),allXCombinations);
+            getAllXOrYCombinations(independentVariables,vocabulary.getIndependentVariablesTypes(),0,new ArrayList<>(),allXCombinations);
             List<List<String>> allYCombinations = new ArrayList<>();
-            getAllXOrYCombinations(dependentVariables,0,new ArrayList<>(),allYCombinations);
+            getAllXOrYCombinations(dependentVariables,vocabulary.getDependentVariablesTypes(),0,new ArrayList<>(),allYCombinations);
             FunctionResult functionResult = new FunctionResult();
             functionResult.setFunctionName(vocabulary.getFunctionName());
             getXAndYCombinations(0,allXCombinations,allYCombinations,new RelationalMap(),functionResult);
@@ -164,7 +164,7 @@ public class VocabularyAnalyzer implements AnalyzerImp
         }
     }
 
-    private void getAllXOrYCombinations(List<String> varibles,int scanIndex,List<String>combination,List<List<String>> allCombinations)
+    private void getAllXOrYCombinations(List<String> varibles,List<EnumVariableType> variblesType,int scanIndex,List<String>combination,List<List<String>> allCombinations)
     {
         if(scanIndex>=varibles.size())
         {
@@ -172,14 +172,28 @@ public class VocabularyAnalyzer implements AnalyzerImp
             allCombinations.add(newCombination);
             return;
         }
+        EnumVariableType variableType = variblesType.get(scanIndex);
 
-        Sort sort = getSortFromSortName(varibles.get(scanIndex));
-
-        for(String contain : sort.getContains())
+        if(variableType==EnumVariableType.ENUM)
         {
-            combination.add(contain);
-            getAllXOrYCombinations(varibles,scanIndex+1,combination,allCombinations);
-            combination.remove(contain);
+            Sort sort = getSortFromSortName(varibles.get(scanIndex));
+
+            for (String contain : sort.getContains())
+            {
+                combination.add(contain);
+                getAllXOrYCombinations(varibles, variblesType, scanIndex + 1, combination, allCombinations);
+                combination.remove(contain);
+            }
+        }
+        else if(variableType==EnumVariableType.Integer)
+        {
+            for(int i=0;i<=30;i++)
+            {
+                String data = String.valueOf(i);
+                combination.add(data);
+                getAllXOrYCombinations(varibles,variblesType,scanIndex+1,combination,allCombinations);
+                combination.remove(data);
+            }
         }
     }
 
@@ -239,6 +253,7 @@ public class VocabularyAnalyzer implements AnalyzerImp
                             return false;
                         }
                         vocabulary.getIndependentVariables().add(lexItem.getData());
+                        vocabulary.getIndependentVariablesTypes().add(lexItem.getType()==EnumLexItemType.IDENTIFIER? EnumVariableType.ENUM:EnumVariableType.Integer);
                         scannerIndex++;
                         status=4;
                         break;
@@ -267,13 +282,24 @@ public class VocabularyAnalyzer implements AnalyzerImp
                         status=6;
                         break;
                     case 6:
-                        if(lexItem.getType()!=EnumLexItemType.IDENTIFIER)
+                        if(lexItem.getType()==EnumLexItemType.IDENTIFIER)
+                        {
+                            vocabulary.getDependentVariables().add(lexItem.getData());
+                            vocabulary.getDependentVariablesTypes().add(EnumVariableType.ENUM);
+                            status=7;
+                        }
+                        else if(lexItem.getType()==EnumLexItemType.KEYWORD && lexItem.getData().equals("nat"))
+                        {
+                                vocabulary.getDependentVariables().add("nat");
+                                vocabulary.getDependentVariablesTypes().add(EnumVariableType.Integer);
+                            status=7;
+                        }
+                        else
                         {
                             return false;
                         }
-                        vocabulary.getDependentVariables().add(lexItem.getData());
                         scannerIndex++;
-                        status=7;
+
                         break;
                     case 7:
                         if(lexItem.getType()==EnumLexItemType.SEPARATOR && lexItem.getData().equals("{"))
@@ -297,6 +323,7 @@ public class VocabularyAnalyzer implements AnalyzerImp
                             return false;
                         }
                         vocabulary.getIndependentVariables().add(lexItem.getData());
+                        vocabulary.getIndependentVariablesTypes().add(lexItem.getType()==EnumLexItemType.IDENTIFIER? EnumVariableType.ENUM:EnumVariableType.Integer);
                         scannerIndex++;
                         status=4;
                         break;

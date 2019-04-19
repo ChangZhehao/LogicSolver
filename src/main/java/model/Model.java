@@ -19,4 +19,15 @@ public class Model
     List<RelationalMap> allFunctionResults = new ArrayList<>();
     boolean isValid = false;
 
+    public String printResult()
+    {
+        StringBuilder sb =new StringBuilder();
+        for(RelationalMap relationalMap: allFunctionResults)
+        {
+            sb.append(relationalMap.printResult()+"\r\n");
+        }
+
+        return sb.toString();
+    }
+
 }

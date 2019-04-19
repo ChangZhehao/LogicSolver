@@ -4,7 +4,9 @@ import lombok.Data;
 import model.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 @Data
 public class ModelAnalyzer
 {
+
     List<Model> allModelList = new ArrayList<>();
     List<Model> allFitModelList = new ArrayList<>();
     List<Constraint> constraintList = new ArrayList<>();
@@ -46,7 +49,7 @@ public class ModelAnalyzer
         {
             i++;
             System.out.println("Model "+i);
-            System.out.println(model);
+            System.out.println(model.printResult());
         }
     }
 
@@ -68,13 +71,12 @@ public class ModelAnalyzer
     {
         //TODO: isFitConstraint
 
-        oneStep(model, constraint);
-        String value = constraint.getValue();
-
+        oneStep(model, constraint.getDstNodes().get(1));
+        String result = constraint.getDstNodes().get(1).getResult();
         //clean Constraint;
         cleanConstraintTmpValue(constraint);
 
-        if(value.equals("false"))
+        if(result.equals("false"))
         {
             return false;
         }
@@ -84,192 +86,229 @@ public class ModelAnalyzer
     }
     private void cleanConstraintTmpValue(Constraint constraint)
     {
-        constraint.setValue(null);
-        for(Constraint child: constraint.getChildConstraintList())
+        Queue<DSTNode> dstNodeQueue = new LinkedList<>( constraint.getDstNodes());
+        while(dstNodeQueue.size()!=0)
         {
-            cleanConstraintTmpValue(child);
+            DSTNode dstNode = dstNodeQueue.poll();
+            dstNode.setResult(null);
+            if(dstNode.getChildrenNodes()==null)
+            {
+                continue;
+            }
+            for(DSTNode childNode : dstNode.getChildrenNodes())
+            {
+                ((LinkedList<DSTNode>) dstNodeQueue).push(childNode);
+            }
         }
     }
 
-    private boolean oneStep(Model model, Constraint constraint)
+    private boolean oneStep(Model model, DSTNode dstNode)
     {
-        if (constraint.getChildConstraintList() == null || constraint.getChildConstraintList().size() == 0)
+        if (dstNode.getChildrenNodes() == null || dstNode.getChildrenNodes().size() == 0)
         {
-            constraint.setValue(constraint.getLeaf().getData());
+            dstNode.setResult(dstNode.getValue().getData());
             return true;
         }
 
 
-        for (Constraint childConstraint : constraint.getChildConstraintList())
+        for (DSTNode childNode : dstNode.getChildrenNodes())
         {
-            oneStep(model, childConstraint);
+            oneStep(model, childNode);
         }
 
-        if(constraint.getConnectSymbol()==null)
+        if(dstNode.getMove()==null)
         {
-            constraint.setValue(constraint.getChildConstraintList().get(0).getValue());
+            dstNode.setResult(dstNode.getValue().getData());
         }
         else
         {
 
-            switch (constraint.getConnectSymbol().getType())
+            switch (dstNode.getMove().getType())
             {
                 case OPERATOR :
-                    constraint.setValue(findValueFromOperator(constraint));
+                    dstNode.setResult(findResultFromOperator(dstNode));
                     break;
-                case IDENTIFIER:
-                    constraint.setValue(findValueFromModel(model, constraint));
-                    break;
-                case KEYWORD:
-                    constraint.setValue(findValueFromOperator(constraint));
-                case SEPARATOR:
-                    if(constraint.getConnectSymbol().getData().equals(","))
-                    {
-                        constraint.setValue(setValueFromFuncParamters(constraint));
-                    }
+                case FUNCTION_NAME:
+                    dstNode.setResult(findResultFromModel(model, dstNode));
                     break;
 
             }
         }
         return true;
     }
-    private String setValueFromFuncParamters(Constraint constraint)
-    {
-        StringBuilder sb =new StringBuilder();
-        for(int i=0;i<constraint.getChildConstraintList().size();i++)
-        {
-            sb.append(constraint.getChildConstraintList().get(i).getValue());
-            if(i!=constraint.getChildConstraintList().size()-1)
-            {
-                sb.append(",");
-            }
-        }
-        return sb.toString();
-    }
 
-    private String findValueFromOperator(Constraint constraint)
+    private String findResultFromOperator(DSTNode dstNode)
     {
-        //TODO: add NOT() AND ,OR XOR, operator
-        String value = "null";
-        String childValue1,childValue2;
-        switch (constraint.getConnectSymbol().getData())
+        String result = "null";
+        String childResult1,childResult2;
+        switch (dstNode.getMove().getData())
         {
             case "=":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                if(childValue1.equals(childValue2))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals(childResult2))
                 {
-                    value ="true";
+                    result ="true";
                 }
                 else {
-                    value = "false";
+                    result = "false";
+                }
+                break;
+            case ">":
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(Integer.valueOf(childResult1) > Integer.valueOf(childResult2))
+                {
+                    result ="true";
+                }
+                else {
+                    result = "false";
+                }
+                break;
+            case "<":
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(Integer.valueOf(childResult1) < Integer.valueOf(childResult2))
+                {
+                    result ="true";
+                }
+                else {
+                    result = "false";
                 }
                 break;
             case "+":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                value = String.valueOf(Integer.valueOf(childValue1)+Integer.valueOf(childValue2));
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                result = String.valueOf(Integer.valueOf(childResult1)+Integer.valueOf(childResult2));
                 break;
             case "-":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                value = String.valueOf(Integer.valueOf(childValue1)-Integer.valueOf(childValue2));
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                result = String.valueOf(Integer.valueOf(childResult1)-Integer.valueOf(childResult2));
                 break;
             case "!":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                if(childValue1.equals("true"))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                if(childResult1.equals("true"))
                 {
-                    value ="false";
+                    result ="false";
                 }
-                else {
-                    value = "true";
+                else if(childResult1.equals("false")) {
+                    result = "true";
+                }
+                else
+                {
+                    result="error";
                 }
                 break;
             case "&":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                if(childValue1.equals("true") && childValue2.equals("true"))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals("true") && childResult2.equals("true"))
                 {
-                    value="true";
+                    result="true";
                 }
                 else
                 {
-                    value="false";
+                    result="false";
                 }
                 break;
             case "|":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                if(childValue1.equals("true") || childValue2.equals("true"))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals("true") || childResult2.equals("true"))
                 {
-                    value = "true";
+                    result = "true";
                 }
                 else
                 {
-                    value="false";
+                    result="false";
                 }
             case "NOT":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                if(childValue1.equals("true"))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                if(childResult1.equals("true"))
                 {
-                    value ="false";
+                    result ="false";
                 }
                 else {
-                    value = "true";
+                    result = "true";
                 }
                 break;
             case "AND":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                if(childValue1.equals("true") && childValue2.equals("true"))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals("true") && childResult2.equals("true"))
                 {
-                    value="true";
+                    result="true";
                 }
                 else
                 {
-                    value="false";
+                    result="false";
                 }
                 break;
             case "OR":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                if(childValue1.equals("true") || childValue2.equals("true"))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals("true") || childResult2.equals("true"))
                 {
-                    value = "true";
+                    result = "true";
                 }
                 else
                 {
-                    value="false";
+                    result="false";
                 }
             case "XOR":
-                childValue1 = constraint.getChildConstraintList().get(0).getValue();
-                childValue2 = constraint.getChildConstraintList().get(1).getValue();
-                if(childValue1.equals(childValue1))
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals(childResult1))
                 {
-                    value = "false";
+                    result = "false";
                 }
                 else
                 {
-                    value="true";
+                    result="true";
                 }
+            case "IF":
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals("false") && childResult2.equals("true"))
+                {
+                    result = "false";
+                }
+                else
+                {
+                    result="true";
+                }
+                break;
+            case "IFF":
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(childResult1.equals(childResult2))
+                {
+                    result = "true";
+                }
+                else
+                {
+                    result="false";
+                }
+                break;
 
         }
-        return value;
+        return result;
     }
 
-    private String findValueFromModel(Model model, Constraint constraint)
+    private String findResultFromModel(Model model, DSTNode dstNode)
     {
-        String value="null";
-        String functionName = constraint.getConnectSymbol().getData();
+        String result="null";
+        String functionName = dstNode.getMove().getData();
         RelationalMap relationalMap = model.getAllFunctionResults().stream().filter(x->(x.getFunctionName().equals(functionName))).collect(Collectors.toList()).get(0);
 
-        String[] paramters = constraint.getChildConstraintList().get(0).getValue().split(",");
+        List<DSTNode> paramters = dstNode.getChildrenNodes();
 
-        if(paramters.length!=relationalMap.getRelations().get(0).getIndependentVariables().size())
+        if(paramters.size()!=relationalMap.getRelations().get(0).getIndependentVariables().size())
         {
-            value="false";
+            result="error";
             //FIXME: bug
-            return "null";
+            return "error";
         }
 
         Relation selectedRelation = null;
@@ -277,9 +316,9 @@ public class ModelAnalyzer
         {
             boolean allXFit=true;
 
-            for(int i=0;i<paramters.length;i++)
+            for(int i=0;i<paramters.size();i++)
             {
-                if(paramters[i].equals(relation.getIndependentVariables().get(i)))
+                if(paramters.get(i).getResult().equals(relation.getIndependentVariables().get(i)))
                 {
                     continue;
                 }
@@ -291,13 +330,13 @@ public class ModelAnalyzer
             }
             if(allXFit==true)
             {
-                value=relation.getDependentVariables().get(0);
+                result=relation.getDependentVariables().get(0);
                 break;
             }
 
         }
 
-        return value;
+        return result;
     }
 
 }

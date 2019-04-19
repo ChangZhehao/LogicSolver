@@ -10,7 +10,7 @@ import model.Vocabulary;
 public class LogicSolver
 {
 
-    public static void sloveLogicPuzzle(String sortString,String vocabularyString,String ConstraintString)
+    public static void solveLogicPuzzle(String sortString, String vocabularyString, String ConstraintString)
     {
         LexAnalyzer lexAnalyzer = new LexAnalyzer();
         lexAnalyzer.lexAnalyze(sortString);
@@ -38,7 +38,7 @@ public class LogicSolver
         lexAnalyzer.lexAnalyze(ConstraintString);
         System.out.println("\r\nConstraint Lex Result:");
         lexAnalyzer.printLexResult();
-        ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList());
+        ConstraintAnalyzer constraintAnalyzer = new ConstraintAnalyzer(lexAnalyzer.getLexList(),vocabularyAnalyzer.getVocabularyList(),sortAnalyzer.getSortList());
 
         if(!constraintAnalyzer.start())
         {

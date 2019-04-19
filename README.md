@@ -1,5 +1,11 @@
 # LogicSolver
-## Release on 2019.04.14
+
+## Develop on 2019.04.15
+1.add 'IF', 'IFF' to Sorts.
+
+2.add 'nat' to Vocabulary.
+
+## Master on 2019.04.14
 The current LogicSolver can figure out:
 ### 1.Sort:
 
