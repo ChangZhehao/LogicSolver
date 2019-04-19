@@ -6,15 +6,16 @@
 2.support precedence.
 
 
-Priority|Explanation|Symbol
-1|plus,minus(didn't support, so we can't use negative number. if you want to. you can use '0-a' instead 'a')|+,-
-2|muliply,divide| A*A, A/A
-3|add, subtract | A+A, A-A
-4|relational comparasion, scan from left to right| A>A, A<A, A=A
-5|logical NOT | NOT A
-6|logical AND | A AND A
-7|logical OR | A OR A
-8|IF, IFF | A IF A, A IFF A|
+| Priority | Explanation | Symbol |
+
+|1|plus,minus(didn't support, so we can't use negative number. if you want to. you can use '0-a' instead 'a')|+,-|
+|2|muliply,divide| A*A, A/A|
+|3|add, subtract | A+A, A-A|
+|4|relational comparasion, scan from left to right| A>A, A<A, A=A|
+|5|logical NOT | NOT A|
+|6|logical AND | A AND A|
+|7|logical OR | A OR A|
+|8|IF, IFF | A IF A, A IFF A||
 
 ## Develop on 2019.04.15
 1.add 'IF', 'IFF' to Sorts.
