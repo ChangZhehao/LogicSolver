@@ -14,7 +14,7 @@ Priority|Explanation|Symbol
 5|logical NOT | NOT A
 6|logical AND | A AND A
 7|logical OR | A OR A
-8|IF, IFF | A IF A, A IFF A
+8|IF, IFF | A IF A, A IFF A|
 
 ## Develop on 2019.04.15
 1.add 'IF', 'IFF' to Sorts.
