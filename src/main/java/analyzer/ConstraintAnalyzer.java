@@ -44,26 +44,62 @@ public class ConstraintAnalyzer implements AnalyzerImp
     {
         updateLexItemType(constraint);
 
-        parseSimpleExpr(constraint);
-
-
-        if(constraint.getDstNodes().size()==3) {
-            return true;
-        }
-        else
+        while(true)
         {
-            return false;
+            if(constraint.getDstNodes().size()==3)
+            {
+                break;
+            }
+            int[]place = ProcessOfFunctionAndBrackets(constraint);
+            switch (place[0])
+            {
+                case 0:
+                    if(isFunction(constraint,place[1]))
+                    {
+                        DSTNode newNode = new DSTNode(new LexItem(EnumLexItemType.DSTNODE_EXPRESSION,"dstNode Expression"));
+                        newNode.setMove(constraint.getDstNodes().get(place[1]-1).getValue());
+                        newNode.setChildrenNodes(new ArrayList<>());
+                        for(int i=place[1]+1;i<=place[2]-1;i+=2)
+                        {
+                            newNode.getChildrenNodes().add(constraint.getDstNodes().get(i));
+                        }
+                        constraint.getDstNodes().set(place[1]-1,newNode);
+                        for(int i=place[1];i<=place[2];i++)
+                        {
+                            constraint.getDstNodes().remove(place[1]);
+                        }
+
+                    }
+                    else
+                    {
+                        DSTNode leftBracket = constraint.getDstNodes().get(place[1]);
+                        DSTNode rightBracket = constraint.getDstNodes().get(place[2]);
+                        parseSimpleExpr(constraint,place[1]+1,place[2]-1);
+
+                        constraint.getDstNodes().remove(leftBracket);
+                        constraint.getDstNodes().remove(rightBracket);
+                    }
+                    break;
+                case 1:
+                    parseSimpleExpr(constraint,0,constraint.getDstNodes().size()-1);
+                    break;
+                case 2:
+                    break;
+            }
         }
+
+        return true;
     }
+
     private boolean parseSimpleExpr(Constraint constraint,int startIndex,int endIndex)
     {
-        priorityOne(constraint);
-        priorityTwo(constraint);
-        priorityThree(constraint);
-        priorityFour(constraint);
-        priorityFive(constraint);
-        prioritySix(constraint);
-        prioritySeven(constraint);
+        priorityOne(constraint,startIndex,endIndex);
+        priorityTwo(constraint,startIndex,endIndex);
+        priorityThree(constraint,startIndex,endIndex);
+        priorityFour(constraint,startIndex,endIndex);
+        priorityFive(constraint,startIndex,endIndex);
+        prioritySix(constraint,startIndex,endIndex);
+        prioritySeven(constraint,startIndex,endIndex);
 
         return true;
     }
@@ -84,7 +120,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i-2);
@@ -137,7 +173,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -190,7 +226,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -245,7 +281,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -299,7 +335,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -352,7 +388,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -406,7 +442,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         while(ischanged)
         {
             ischanged = false;
-            for(int i=startIndex+2;i<endIndex;i++)
+            for(int i=startIndex+2;i<=endIndex && i<constraint.getDstNodes().size();i++)
             {
 
                 DSTNode node1 = constraint.getDstNodes().get(i - 2);
@@ -448,78 +484,51 @@ public class ConstraintAnalyzer implements AnalyzerImp
     /**
      * parenthesis and function's process
      *
+     * intStatusCode
+     * 0 success
+     * 1 no parenthesis match
+     * 2 list is null
+     *
      * @param constraint
-     * @return
+     * @return [intStatusCode, indexof'(', indexof ')']
      */
-    private boolean ProcessOfFunctionAndBrackets(Constraint constraint,int startIndex, int endIndex)
+    private int[] ProcessOfFunctionAndBrackets(Constraint constraint)
     {
-        boolean ischanged = true;
-        while(ischanged)
+        if(constraint.getDstNodes().size()==0)
         {
-            ischanged = false;
-            int innerLeftBracketIndex = -1;
-            int innerRightBracketIndex = -1;
-            int matchCount = 0;
-            for(int i=0;i<constraint.getDstNodes().size();i++)
+            return new int[]{2,-1,-1};
+        }
+
+
+        boolean ischanged = false;
+        int innerLeftBracketIndex = -1;
+        int innerRightBracketIndex = -1;
+        for(int i=0;i<constraint.getDstNodes().size();i++)
+        {
+            LexItem item = constraint.getDstNodes().get(i).getValue();
+            if(item.getType()==EnumLexItemType.SEPARATOR && item.getData().equals("("))
             {
-                LexItem item = constraint.getDstNodes().get(i).getValue();
-                if(item.getType()==EnumLexItemType.SEPARATOR && item.getData().equals("("))
-                {
-                    innerLeftBracketIndex = i;
-                    matchCount++;
-                }
-                else if(item.getType() == EnumLexItemType.SEPARATOR && item.getData().equals(")"))
-                {
-                    innerRightBracketIndex = i;
-                    matchCount--;
-                }
-                if(innerLeftBracketIndex!= -1 && innerRightBracketIndex!= -1 && matchCount==0)
-                {
-                    ischanged=true;
-                    break;
-                }
+                innerLeftBracketIndex = i;
             }
-            if(!ischanged)
+            else if(item.getType() == EnumLexItemType.SEPARATOR && item.getData().equals(")"))
             {
+                innerRightBracketIndex = i;
                 break;
             }
-
-            if(isFunction(constraint,innerLeftBracketIndex))
-            {
-                //FIXME: didn't check if the paramters of function are suitable.
-                DSTNode functionNode =constraint.getDstNodes().get(innerLeftBracketIndex-1);
-                functionNode.setMove(functionNode.getValue());
-                functionNode.setChildrenNodes(new ArrayList<>());
-                for(int i=innerLeftBracketIndex+1;i<innerRightBracketIndex;i+=2)
-                {
-                    functionNode.getChildrenNodes().add(constraint.getDstNodes().get(i));
-                }
-
-                functionNode.setValue(new LexItem(EnumLexItemType.DSTNODE_EXPRESSION,"function"));
-                for(int i=0;i<=innerRightBracketIndex-innerLeftBracketIndex;i++)
-                {
-                    constraint.getDstNodes().remove(innerLeftBracketIndex);
-                }
-            }
-            else
-            {
-                //it should be (A). if the index1-index2 is not 2 ,there may be something wrong
-                if(innerRightBracketIndex-innerLeftBracketIndex!=2)
-                {
-                    System.out.println("innerRight - innerLeft is not 2");
-                    return false;
-                }
-                DSTNode dstNode1 = constraint.getDstNodes().get(innerLeftBracketIndex);
-                DSTNode dstNode3 = constraint.getDstNodes().get(innerRightBracketIndex);
-                constraint.getDstNodes().remove(dstNode1);
-                constraint.getDstNodes().remove(dstNode3);
-            }
-
         }
-        return true;
+
+        if(innerRightBracketIndex == -1)
+        {
+            return new int[]{1,-1,-1};
+        }
+        else
+        {
+            return new int[]{0,innerLeftBracketIndex,innerRightBracketIndex};
+        }
+
     }
 
-    private boolean isFunction(Constraint constraint,int innerLeftBracketIndex,int startIndex, int endIndex)
+    private boolean isFunction(Constraint constraint,int innerLeftBracketIndex)
     {
         if(innerLeftBracketIndex==0)
         {
