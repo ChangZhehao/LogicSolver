@@ -72,11 +72,11 @@ public class ModelAnalyzer
         //TODO: isFitConstraint
 
         oneStep(model, constraint.getDstNodes().get(1));
-        String value = constraint.getDstNodes().get(1).getResult();
+        String result = constraint.getDstNodes().get(1).getResult();
         //clean Constraint;
         cleanConstraintTmpValue(constraint);
 
-        if(value.equals("false"))
+        if(result.equals("false"))
         {
             return false;
         }
@@ -147,6 +147,28 @@ public class ModelAnalyzer
                 childResult1 = dstNode.getChildrenNodes().get(0).getResult();
                 childResult2 = dstNode.getChildrenNodes().get(1).getResult();
                 if(childResult1.equals(childResult2))
+                {
+                    result ="true";
+                }
+                else {
+                    result = "false";
+                }
+                break;
+            case ">":
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(Integer.valueOf(childResult1) > Integer.valueOf(childResult2))
+                {
+                    result ="true";
+                }
+                else {
+                    result = "false";
+                }
+                break;
+            case "<":
+                childResult1 = dstNode.getChildrenNodes().get(0).getResult();
+                childResult2 = dstNode.getChildrenNodes().get(1).getResult();
+                if(Integer.valueOf(childResult1) < Integer.valueOf(childResult2))
                 {
                     result ="true";
                 }

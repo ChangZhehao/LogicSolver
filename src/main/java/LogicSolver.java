@@ -10,7 +10,7 @@ import model.Vocabulary;
 public class LogicSolver
 {
 
-    public static void sloveLogicPuzzle(String sortString,String vocabularyString,String ConstraintString)
+    public static void solveLogicPuzzle(String sortString, String vocabularyString, String ConstraintString)
     {
         LexAnalyzer lexAnalyzer = new LexAnalyzer();
         lexAnalyzer.lexAnalyze(sortString);

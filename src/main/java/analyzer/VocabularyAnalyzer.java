@@ -187,7 +187,7 @@ public class VocabularyAnalyzer implements AnalyzerImp
         }
         else if(variableType==EnumVariableType.Integer)
         {
-            for(int i=1;i<=31;i++)
+            for(int i=0;i<=30;i++)
             {
                 String data = String.valueOf(i);
                 combination.add(data);

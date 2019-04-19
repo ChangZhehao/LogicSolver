@@ -97,6 +97,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
         priorityTwo(constraint,startIndex,endIndex);
         priorityThree(constraint,startIndex,endIndex);
         priorityFour(constraint,startIndex,endIndex);
+        priorityFour_(constraint,startIndex,endIndex);
         priorityFive(constraint,startIndex,endIndex);
         prioritySix(constraint,startIndex,endIndex);
         prioritySeven(constraint,startIndex,endIndex);
@@ -321,6 +322,55 @@ public class ConstraintAnalyzer implements AnalyzerImp
     }
 
     /**
+     * not
+     * rules:
+     * NOT =: ...NOT A....
+     *
+     * @param constraint
+     * @param startIndex
+     * @param endIndex
+     * @return
+     */
+    private boolean priorityFour_(Constraint constraint,int startIndex, int endIndex)
+    {
+        boolean ischanged = true;
+        while(ischanged)
+        {
+            ischanged = false;
+            for(int i=startIndex+1;i<=endIndex && i<constraint.getDstNodes().size();i++)
+            {
+
+                DSTNode node1 = constraint.getDstNodes().get(i-1);
+                DSTNode node2 = constraint.getDstNodes().get(i);
+
+                if(node1.getValue().getType()!=EnumLexItemType.OPERATOR)
+                {
+                    continue;
+                }
+                if(!node1.getValue().getData().equals("NOT"))
+                {
+                    continue;
+                }
+                if(node2.getValue().getType()!=EnumLexItemType.DSTNODE_JUDGEMENT)
+                {
+                    continue;
+                }
+                ischanged = true;
+                DSTNode newNode = new DSTNode(new LexItem(EnumLexItemType.DSTNODE_JUDGEMENT,"dstNode Judgement"));
+                newNode.setChildrenNodes(new ArrayList<>());
+                newNode.getChildrenNodes().add(node2);
+                newNode.setMove(node1.getValue());
+                constraint.getDstNodes().set(i-1,newNode);
+                constraint.getDstNodes().remove(i);
+
+                break;
+            }
+
+        }
+        return true;
+    }
+
+    /**
      *
      * and
      * rules:
@@ -346,7 +396,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
                 {
                     continue;
                 }
-                if(node2.getValue().getType()!=EnumLexItemType.KEYWORD)
+                if(node2.getValue().getType()!=EnumLexItemType.OPERATOR)
                 {
                     continue;
                 }
@@ -399,7 +449,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
                 {
                     continue;
                 }
-                if(node2.getValue().getType()!=EnumLexItemType.KEYWORD)
+                if(node2.getValue().getType()!=EnumLexItemType.OPERATOR)
                 {
                     continue;
                 }
@@ -453,7 +503,7 @@ public class ConstraintAnalyzer implements AnalyzerImp
                 {
                     continue;
                 }
-                if(node2.getValue().getType()!=EnumLexItemType.KEYWORD)
+                if(node2.getValue().getType()!=EnumLexItemType.OPERATOR)
                 {
                     continue;
                 }
@@ -561,6 +611,10 @@ public class ConstraintAnalyzer implements AnalyzerImp
             {
                 dstNode.getValue().setType(EnumLexItemType.CONSTANT);
             }
+            else if(isWordOperatorLexItem(dstNode.getValue()))
+            {
+                dstNode.getValue().setType(EnumLexItemType.OPERATOR);
+            }
         }
     }
     private boolean isFunctionNameLexItem(LexItem item)
@@ -608,6 +662,23 @@ public class ConstraintAnalyzer implements AnalyzerImp
                     return true;
                 }
             }
+        }
+        return false;
+    }
+    private boolean isWordOperatorLexItem(LexItem item)
+    {
+        if(item.getType()!=EnumLexItemType.KEYWORD)
+        {
+            return false;
+        }
+        if(item.getData().equals("AND")
+        || item.getData().equals("OR")
+        || item.getData().equals("NOT")
+        || item.getData().equals("IF")
+        || item.getData().equals("IFF")
+        || item.getData().equals("XOR"))
+        {
+            return true;
         }
         return false;
     }

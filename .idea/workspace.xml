@@ -5,12 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/LogicSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LogicSolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/DSTNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/DSTNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/LogicSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/LogicSolver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/EnumLexItemType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/EnumLexItemType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/LexItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/LexItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,36 +29,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="166">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
-                <element signature="method#priorityOne#0;class#ConstraintAnalyzer#0" />
-                <element signature="method#updateLexItemType#0;class#ConstraintAnalyzer#0" />
                 <element signature="method#isFunctionNameLexItem#0;class#ConstraintAnalyzer#0" />
                 <element signature="method#isVariableLexItem#0;class#ConstraintAnalyzer#0" />
                 <element signature="method#isConstantLexItem#0;class#ConstraintAnalyzer#0" />
-                <element signature="method#getConstraints#0;class#ConstraintAnalyzer#0" />
+                <element signature="e#25012#25013#0" expanded="true" />
+                <element signature="e#25040#25041#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar:///lab/usr/local/jdk-11.0.2/lib/src.zip!/java.base/java/util/List.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/LogicSolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="571" column="6" selection-start-line="571" selection-start-column="6" selection-end-line="571" selection-end-column="6" />
+            <state relative-caret-position="326">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/LogicSolver.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+            <state relative-caret-position="308">
+              <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#isSpaceOrLineBreak#0;class#LexAnalyzer#0" />
+                <element signature="method#isSeperator#0;class#LexAnalyzer#0" />
               </folding>
             </state>
           </provider>
@@ -70,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            <state relative-caret-position="323">
+              <caret line="170" column="50" selection-start-line="170" selection-start-column="50" selection-end-line="170" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+            <state relative-caret-position="282">
+              <caret line="58" column="48" lean-forward="true" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -91,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Constraint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="242">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,6 +114,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="192" column="38" lean-forward="true" selection-start-line="192" selection-start-column="38" selection-end-line="192" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Vocabulary.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
@@ -125,21 +138,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/EnumLexItemType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
+            <state relative-caret-position="502">
               <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
             </state>
           </provider>
@@ -204,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/main/java/model/Relation.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/SortAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/EnumVariableType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/model/GrammarNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/EnumGrammarType.java" />
@@ -214,11 +214,12 @@
         <option value="$PROJECT_DIR$/src/main/java/model/Vocabulary.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/EnumLexItemType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/LogicSolver.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/DSTNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/LogicSolver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MyTest.java" />
       </list>
     </option>
   </component>
@@ -440,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555570838651</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="bottom-up to solve constraint .80%">
+      <created>1555648756844</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1555648756844</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -468,7 +476,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.35796046" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35698923" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.40752688" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -476,7 +484,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="CheckStyle" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.32795697" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32795697" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32939914" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -515,46 +523,46 @@
     <MESSAGE value="supprot function nat{}" />
     <MESSAGE value="update readme" />
     <MESSAGE value="bottom-up to solve constraint .40%" />
-    <option name="LAST_COMMIT_MESSAGE" value="bottom-up to solve constraint .40%" />
+    <MESSAGE value="bottom-up to solve constraint .80%" />
+    <option name="LAST_COMMIT_MESSAGE" value="bottom-up to solve constraint .80%" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/LogicSolver.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java</url>
-          <line>44</line>
+          <line>118</line>
           <properties />
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="106" />
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java</url>
-          <line>35</line>
+          <line>73</line>
           <properties />
-          <option name="timeStamp" value="107" />
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java</url>
+          <line>226</line>
+          <properties />
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/LogicSolver.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="117" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>result==null</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>scannerIndex==10</expression-string>
         <language-id>JAVA</language-id>
@@ -567,6 +575,11 @@
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>vocabularyAnalyzer</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>ProcessOfFunctionAndBrackets(constraint)</expression-string>
         <language-id>JAVA</language-id>
@@ -604,11 +617,6 @@
       </expression>
       <expression>
         <expression-string>model</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>modelList</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -744,77 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#isSpaceOrLineBreak#0;class#LexAnalyzer#0" />
-            <element signature="method#isSeperator#0;class#LexAnalyzer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Vocabulary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/EnumLexItemType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="method#priorityOne#0;class#ConstraintAnalyzer#0" />
-            <element signature="method#updateLexItemType#0;class#ConstraintAnalyzer#0" />
-            <element signature="method#isFunctionNameLexItem#0;class#ConstraintAnalyzer#0" />
-            <element signature="method#isVariableLexItem#0;class#ConstraintAnalyzer#0" />
-            <element signature="method#isConstantLexItem#0;class#ConstraintAnalyzer#0" />
-            <element signature="method#getConstraints#0;class#ConstraintAnalyzer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Constraint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///lab/usr/local/jdk-11.0.2/lib/src.zip!/java.base/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -832,10 +769,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/EnumLexItemType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Vocabulary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/LexAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#isSpaceOrLineBreak#0;class#LexAnalyzer#0" />
+            <element signature="method#isSeperator#0;class#LexAnalyzer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/ConstraintAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="method#isFunctionNameLexItem#0;class#ConstraintAnalyzer#0" />
+            <element signature="method#isVariableLexItem#0;class#ConstraintAnalyzer#0" />
+            <element signature="method#isConstantLexItem#0;class#ConstraintAnalyzer#0" />
+            <element signature="e#25012#25013#0" expanded="true" />
+            <element signature="e#25040#25041#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Constraint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/ModelAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        <state relative-caret-position="323">
+          <caret line="170" column="50" selection-start-line="170" selection-start-column="50" selection-end-line="170" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/VocabularyAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="192" column="38" lean-forward="true" selection-start-line="192" selection-start-column="38" selection-end-line="192" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -844,11 +844,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LogicSolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+        <state relative-caret-position="326">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="58" column="48" lean-forward="true" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
         </state>
       </provider>
     </entry>
