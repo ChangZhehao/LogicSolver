@@ -1,6 +1,6 @@
 # LogicSolver
 
-## Develop on 2019.04.15
+## Develop on 2019.04.19
 transfer the recursion (from top to bottom) syntax parser to bottom to top syntax parser. It can support the priority. The program still can't support 'ALL' and 'SOME'. 
 
 **Compare with the Logic For Fun, my program is not efficient.**
