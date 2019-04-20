@@ -1,20 +1,24 @@
 # LogicSolver
 
-## Master on 2019.04.19
+## Develop on 2019.04.20
+now the Quantifier can be used, but I meet the efficiency problem.
 
+currently, I have 2 solution, and I will try to fix it.
+
+**1. dont't initialize all model when I analyze vocabularys. and combine the func model after annalyze constraints**
+
+**2. improve (...)AND(...) (...)OR(...), if the frist Judgement is false or true, I don't need to judge the rest Judgements.**
+
+
+
+## Develop on 2019.04.19
 transfer the recursion (from top to bottom) syntax parser to bottom to top syntax parser. It can support the priority. The program still can't support 'ALL' and 'SOME'. 
 
-### 1.Sort:
+**Compare with the Logic For Fun, my program is not efficient.**
 
-### 2.Vocabulary:
+1.add '>', '<' to Constraints.
 
-2.1 restruct the model, change the nat to 0-30.
-
-### 3.Constraint:
-
-3.1 add '>', '<' to Constraints.
-
-3.2 support precedence. If in the same Priority, program will scan from left to right. It is not strict bracket matching.
+2.support precedence. If in the same Priority, program will scan from left to right. It is not strict bracket matching.
 
 The Priority is as follow:
 

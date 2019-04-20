@@ -2,6 +2,7 @@ package analyzer;
 
 import lombok.Data;
 import model.*;
+import util.PrintUtil;
 
 import java.util.*;
 
@@ -70,6 +71,11 @@ public class ConstraintAnalyzer implements AnalyzerImp
                         }
 
                     }
+                    else if(isQuantifier(constraint,place[1]))
+                    {
+                        //TODO isQuantifier
+                        parseQuantifierExpr(constraint,place[1]-4,place[2]);
+                    }
                     else
                     {
                         DSTNode leftBracket = constraint.getDstNodes().get(place[1]);
@@ -89,6 +95,107 @@ public class ConstraintAnalyzer implements AnalyzerImp
         }
 
         return true;
+    }
+
+    private boolean parseQuantifierExpr(Constraint constraint,int startIndex,int endIndex)
+    {
+        //the startIndex and endIndex is
+        // constraint: ALL x BELONG X (....)
+
+        DSTNode node1 = constraint.getDstNodes().get(startIndex);
+        DSTNode node2 = constraint.getDstNodes().get(startIndex+1);
+        DSTNode node3 = constraint.getDstNodes().get(startIndex+2);
+        DSTNode node4 = constraint.getDstNodes().get(startIndex+3);
+
+        List<DSTNode> quantifierInnerListTemplate = constraint.getDstNodes().subList(startIndex+4,endIndex+1);
+
+        List<DSTNode> finalDSTNodeList = new ArrayList<>();
+
+        List<String> constantList = getConstantListByVariable(node4.getValue().getData());
+        for(String constant : constantList)
+        {
+            List<DSTNode> newInnerList = deepCloneDSTNodeList(quantifierInnerListTemplate);
+            Queue<DSTNode> scanQue = new LinkedList<>(newInnerList);
+            while(!scanQue.isEmpty())
+            {
+                DSTNode node = scanQue.poll();
+                if(node.getValue().getType()==EnumLexItemType.IDENTIFIER
+                && node.getValue().getData().equals(node2.getValue().getData()))
+                {
+                    node.setValue(new LexItem(EnumLexItemType.CONSTANT,constant));
+                }
+                if(node.getChildrenNodes()!=null)
+                {
+                     for(DSTNode child:node.getChildrenNodes())
+                     {
+                         scanQue.offer(child);
+                     }
+                }
+            }
+            if(finalDSTNodeList.size()!=0)
+            {
+                LexItem op = null;
+                if(node1.getValue().getData().equals("SOME"))
+                {
+                    op = new LexItem(EnumLexItemType.OPERATOR,"OR");
+                }
+                else if(node1.getValue().getData().equals("ALL"))
+                {
+                    op = new LexItem(EnumLexItemType.OPERATOR,"AND");
+                }
+                DSTNode dstNode =new DSTNode(op);
+                finalDSTNodeList.add(dstNode);
+            }
+            finalDSTNodeList.addAll(newInnerList);
+        }
+        //finalDSTNodeList is
+        // SOME x BELONG X := (...) OR (...) OR (...) OR (....)
+        // ALL x BELONG X := (...) AND (...) AND (...) AND (....)
+
+        // replace SOME x BELONG X (...) of constraint To ((....) AND (...) AND (....))
+
+        finalDSTNodeList.add(0,new DSTNode(new LexItem(EnumLexItemType.SEPARATOR,"(")));
+        finalDSTNodeList.add(new DSTNode(new LexItem(EnumLexItemType.SEPARATOR,")")));
+
+        for(int i=0;i<=endIndex-startIndex;i++)
+        {
+            constraint.getDstNodes().remove(startIndex);
+        }
+        constraint.getDstNodes().addAll(startIndex,finalDSTNodeList);
+
+        return true;
+    }
+
+    private List<String> getConstantListByVariable(String varable)
+    {
+        for(Sort sort: sortList)
+        {
+            if(sort.getName().equals(varable))
+            {
+                return sort.getContains();
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    private List<DSTNode> deepCloneDSTNodeList(List<DSTNode> list)
+    {
+
+
+
+        List<DSTNode> cloneList = new ArrayList<>();
+        try {
+            for(DSTNode node : list)
+            {
+                DSTNode cloneNode = (DSTNode) node.clone();
+                cloneList.add(cloneNode);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("clone error!");
+        }
+        return cloneList;
     }
 
     private boolean parseSimpleExpr(Constraint constraint,int startIndex,int endIndex)
@@ -577,6 +684,41 @@ public class ConstraintAnalyzer implements AnalyzerImp
         }
 
     }
+    private boolean isQuantifier(Constraint constraint,int innerLeftBracketIndex)
+    {
+        // the quaifier should be write as ALL x BELONGS X (.....
+        // so the '(' should be at least the index of 4.
+        if(innerLeftBracketIndex<4)
+        {
+            return false;
+        }
+        DSTNode node1= constraint.getDstNodes().get(innerLeftBracketIndex-4);
+        DSTNode node2= constraint.getDstNodes().get(innerLeftBracketIndex-3);
+        DSTNode node3= constraint.getDstNodes().get(innerLeftBracketIndex-2);
+        DSTNode node4 = constraint.getDstNodes().get(innerLeftBracketIndex-1);
+
+        if(node1.getValue().getType()!=EnumLexItemType.QUANTIFIER)
+        {
+            return false;
+        }
+        if(node2.getValue().getType()!=EnumLexItemType.IDENTIFIER)
+        {
+            return false;
+        }
+        if(node3.getValue().getType()!=EnumLexItemType.OPERATOR)
+        {
+            return false;
+        }
+        if(!(node3.getValue().getData().equals("BELONG")))
+        {
+            return false;
+        }
+        if(node4.getValue().getType()!=EnumLexItemType.VARIALBE)
+        {
+            return false;
+        }
+        return true;
+    }
 
     private boolean isFunction(Constraint constraint,int innerLeftBracketIndex)
     {
@@ -615,7 +757,23 @@ public class ConstraintAnalyzer implements AnalyzerImp
             {
                 dstNode.getValue().setType(EnumLexItemType.OPERATOR);
             }
+            else if(isQuantifierLexItem(dstNode.getValue()))
+            {
+                dstNode.getValue().setType(EnumLexItemType.QUANTIFIER);
+            }
         }
+    }
+    private boolean isQuantifierLexItem(LexItem item)
+    {
+        if(item.getType()!=EnumLexItemType.KEYWORD)
+        {
+            return false;
+        }
+        if(item.getData().equals("ALL") || item.getData().equals("SOME"))
+        {
+            return true;
+        }
+        return false;
     }
     private boolean isFunctionNameLexItem(LexItem item)
     {
@@ -676,7 +834,8 @@ public class ConstraintAnalyzer implements AnalyzerImp
         || item.getData().equals("NOT")
         || item.getData().equals("IF")
         || item.getData().equals("IFF")
-        || item.getData().equals("XOR"))
+        || item.getData().equals("XOR")
+        || item.getData().equals("BELONG"))
         {
             return true;
         }

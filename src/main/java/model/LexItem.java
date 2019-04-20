@@ -11,7 +11,7 @@ import java.util.List;
  * Description:
  */
 @Data
-public class LexItem
+public class LexItem implements Cloneable
 {
     private EnumLexItemType type;
     private String data;
@@ -20,5 +20,9 @@ public class LexItem
     {
         this.type =type;
         this.data=data;
+    }
+    @Override
+    protected Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 }

@@ -223,6 +223,7 @@ public class ModelAnalyzer
                 {
                     result="false";
                 }
+                break;
             case "NOT":
                 childResult1 = dstNode.getChildrenNodes().get(0).getResult();
                 if(childResult1.equals("true"))
@@ -256,6 +257,7 @@ public class ModelAnalyzer
                 {
                     result="false";
                 }
+                break;
             case "XOR":
                 childResult1 = dstNode.getChildrenNodes().get(0).getResult();
                 childResult2 = dstNode.getChildrenNodes().get(1).getResult();
@@ -267,6 +269,7 @@ public class ModelAnalyzer
                 {
                     result="true";
                 }
+                break;
             case "IF":
                 childResult1 = dstNode.getChildrenNodes().get(0).getResult();
                 childResult2 = dstNode.getChildrenNodes().get(1).getResult();
