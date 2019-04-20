@@ -1,5 +1,16 @@
 # LogicSolver
 
+## Develop on 2019.04.20
+now the Quantifier can be used, but I meet the efficiency problem.
+
+currently, I have 2 solution, and I will try to fix it.
+
+**1. dont't initialize all model when I analyze vocabularys. and combine the func model after annalyze constraints**
+
+**2. improve (...)AND(...) (...)OR(...), if the frist Judgement is false or true, I don't need to judge the rest Judgements.**
+
+
+
 ## Develop on 2019.04.19
 transfer the recursion (from top to bottom) syntax parser to bottom to top syntax parser. It can support the priority. The program still can't support 'ALL' and 'SOME'. 
 
