@@ -1,5 +1,4 @@
 import analyzer.*;
-import model.Vocabulary;
 
 /**
  * User: u6613739

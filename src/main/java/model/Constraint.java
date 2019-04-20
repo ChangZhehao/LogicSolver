@@ -10,4 +10,7 @@ public class Constraint {
 
     private DSTNode root = null;
     private List<DSTNode> dstNodes = new ArrayList<>();
+
+
+
 }
